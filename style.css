@@ -58,16 +58,17 @@ body {
 
 /* الاسم أسفل الصورة */
 .name {
-    font-size: 1.15rem;
-    letter-spacing: 3px;
+    font-size: 2rem;
+    letter-spacing: 1px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-transform: uppercase;
+    white-space: NOWRAP;
 }
 
 /* اللقب الوظيفي */
 .title {
-    font-size: 1.65rem;
+    font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 2px;
     line-height: 1.4;
