@@ -165,3 +165,14 @@ body {
         padding: 30px 20px 40px 20px; /* تظبيط مسافات المحتوى الداخلي للموبايل */
     }
 }
+
+.tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;        /* خط صغير جداً وناعم */
+    font-weight: 400;          /* رفيع مش عريض */
+    color: #555555;            /* رمادي داكن هادئ عشان ما يضربش في العين فوق السواد القاتم */
+    margin-top: 30px;          /* مسافة مريحة تحت الأيقونات */
+    letter-spacing: 1px;       /* تباعد خفيف وراقي بين الحروف */
+    text-transform: uppercase; /* يخلي الحروف كابيتال بشكل شيك */
+    text-align: center;
+}
