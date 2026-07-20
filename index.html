@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahmoud Mahran</title>
+    
+    <!-- كود أيقونة حرف M الرصاصي الشفاف للتاب -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4,26 L4,6 L10,6 L16,16 L22,6 L28,6 L28,26 L23,26 L23,12 L17.5,21 L14.5,21 L9,12 L9,26 Z' fill='%23888888'/%3E%3C/svg%3E">
+
+    <!-- 👈 ربط مكتبة FontAwesome الرسمية عشان الأيقونات تظهر فوراً -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- استدعاء خط Montserrat بالشكل الصحيح مع الأوزان العريضة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-container">
+        
+        <!-- 1. الصورة تبدأ من أعلى الكارت وبعرض كامل -->
+        <div class="profile-img-container">
+            <img src="profile.jpeg" alt="محمود مهران" class="profile-img">
+            <div class="fade-overlay"></div>
+        </div>
+
+        <!-- محتوى الكارت الداخلي (الاسم، اللقب، الأزرار) لإضافة مسافات جانبية لهم -->
+        <div class="card-content">
+            
+            <!-- 2. الاسم تحت الصورة مباشرة -->
+            <h1 class="name">Mahmoud Mahran</h1>
+            
+            <!-- 3. اللقب الوظيفي -->
+            <h2 class="title">IT-System-Elektroniker i. A.</h2>
+
+            <!-- زر الاتصال -->
+            <button id="contact-btn" class="cta-button">Contact Me</button>
+
+            <!-- قسم الأيقونات -->
+            <div class="social-icons" id="social-icons">
+                <a href="https://wa.me/491781359127" target="_blank" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="tel:+491781359127" class="phone"><i class="fa-solid fa-phone"></i></a>
+                <a href="mailto:mahmuud.mahran@gmail.com" class="email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://instagram.com/mahmoudelrawy" target="_blank" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            
+            <p class="tagline">© 2026 Mahmoud Mahran. All Rights Reserved.</p>
+            
+        </div>
+
+    </div>
+
+<script>
+    const contactBtn = document.getElementById('contact-btn');
+    const socialIcons = document.getElementById('social-icons'); // اتأكدنا إنه بيقرأ الـ id
+
+    contactBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        socialIcons.classList.toggle('show');
+
+        // التعديل الجديد: السكرول التلقائي
+        if (socialIcons.classList.contains('show')) {
+            // "يستنى جزء من الثانية عشان الأيقونات تفتح وبعدين يعمل سكرول"
+            setTimeout(() => {
+                socialIcons.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100); 
+        }
+    });
+
+    document.addEventListener('click', () => {
+        socialIcons.classList.remove('show');
+    });
+</script>
+</body>
+</html>
