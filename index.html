@@ -20,10 +20,10 @@
 
     <div class="card-container">
         
-        <!-- حاوية الصورة والفيديو -->
+        <!-- حاوية الصورة والفيديو معاً بنفس المقاس والبرواز -->
         <div class="profile-img-container">
             <img src="profile.jpeg" alt="محمود مهران" class="profile-img" id="profile-img">
-            <video id="profile-video" src="intro.mp4" playsinline preload="auto"></video>
+            <video id="profile-video" src="intro.mp4" playsinline preload="auto" muted></video>
             <div class="fade-overlay" id="fade-overlay"></div>
         </div>
 
@@ -58,7 +58,7 @@
     </div>
 
 <script>
-    // زر Contact Me مع التمرير التلقائي
+    // زر Contact Me مع التمرير
     const contactBtn = document.getElementById('contact-btn');
     const socialIcons = document.getElementById('social-icons');
 
@@ -73,7 +73,7 @@
         }
     });
 
-    // إظهار/إخفاء تفاصيل الوظيفة بالنقر على اللقب
+    // إظهار تفاصيل الوظيفة بالنقر
     const titleContainer = document.getElementById('title-container');
     const titleDetails = document.getElementById('title-details');
 
@@ -86,7 +86,7 @@
         socialIcons.classList.remove('show');
     });
 
-    // ميزة الـ Easter Egg (الضغط 5 مرات على الصورة)
+    // ميزة الـ Easter Egg (انزلاق النصوص وتحول الصورة لفيديو في نفس مكانها)
     const profileImg = document.getElementById('profile-img');
     const profileVideo = document.getElementById('profile-video');
     const cardContent = document.getElementById('card-content');
@@ -106,20 +106,22 @@
         if (tapCount === 5) {
             tapCount = 0;
             
-            // سحب النصوص لأسفل وإخفاء التدرج
+            // 1. سحب النصوص لأسفل بنعومة وإخفاء التدرج
             if (cardContent) cardContent.classList.add('slide-down');
             if (fadeOverlay) fadeOverlay.style.opacity = '0';
 
-            // تشغيل الفيديو
+            // 2. إخفاء الصورة وعرض الفيديو في نفس المكان بالضبط
+            profileImg.style.display = 'none';
             profileVideo.style.display = 'block';
             profileVideo.currentTime = 0;
             profileVideo.play();
         }
     });
 
-    // إعادة الوضع الطبيعي بعد انتهاء الفيديو
+    // العودة للوضع الطبيعي فور انتهاء الفيديو
     profileVideo.addEventListener('ended', () => {
         profileVideo.style.display = 'none';
+        profileImg.style.display = 'block';
         if (cardContent) cardContent.classList.remove('slide-down');
         if (fadeOverlay) fadeOverlay.style.opacity = '1';
     });
