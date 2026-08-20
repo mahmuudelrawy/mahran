@@ -26,28 +26,38 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
-/* حاوية الصورة */
+/* حاوية الصورة والفيديو لضبط التطابق التام بنسبة 9:16 */
 .profile-img-container {
     position: relative;
     width: 100%;
+    aspect-ratio: 9 / 16;
     background-color: #000000;
+    overflow: hidden;
 }
 
 .profile-img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
     display: block;
     cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
-/* الفيديو مخفي وبنفس أبعاد ومكان الصورة */
 #profile-video {
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    object-position: top center;
+    z-index: 2;
 }
 
 .fade-overlay {
@@ -55,19 +65,25 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 120px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%);
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
-/* حاوية المحتوى الداخلي */
+/* حاوية المحتوى الداخلي مع تأثير الانزلاق لأسفل */
 .card-content {
-    padding: 30px 30px 40px 30px;
-    transition: opacity 0.4s ease-in-out;
+    padding: 20px 30px 40px 30px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    transform: translateY(0);
+    opacity: 1;
 }
 
-/* إخفاء الواجهة أثناء تشغيل الفيديو */
-.hidden-ui {
-    opacity: 0 !important;
+/* حالة الاختفاء بالانسحاب لأسفل */
+.card-content.slide-down {
+    transform: translateY(100px);
+    opacity: 0;
     pointer-events: none;
 }
 
@@ -83,7 +99,7 @@ body {
     white-space: nowrap;
 }
 
-/* تنسيق المسمى الوظيفي والقائمة المنسدلة */
+/* المسمى الوظيفي التفاعلي بدون أسهم */
 .title-container {
     cursor: pointer;
     margin-bottom: 30px;
@@ -99,20 +115,11 @@ body {
     letter-spacing: 0.2px;      
     text-transform: none;       
     margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    transition: color 0.2s ease;
 }
 
-.toggle-arrow {
-    font-size: 0.75rem;
-    color: #888888;
-    transition: transform 0.3s ease;
-}
-
-.toggle-arrow.rotate {
-    transform: rotate(180deg);
+.title:hover {
+    color: #ffffff;
 }
 
 .title-details {
@@ -221,6 +228,6 @@ body {
     }
     
     .card-content {
-        padding: 30px 20px 40px 20px;
+        padding: 20px 20px 40px 20px;
     }
 }
