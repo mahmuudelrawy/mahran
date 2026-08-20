@@ -5,59 +5,62 @@
 }
 
 body {
-    background-color: #f5f5f5;
+    background-color: #000000;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
 }
 
-/* الكارت الرئيسي */
+/* الكارت محكوم بارتفاع شاشة الموبايل */
 .card-container {
     background-color: #000000;
     width: 100%;
-    max-width: 380px;
-    border-radius: 40px;
+    max-width: 420px;
+    min-height: 100vh;
     text-align: center;
     color: #ffffff;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: relative;
 }
 
-/* حاوية الصورة والفيديو لضبط التطابق التام بنسبة 9:16 */
+/* ضبط حجم الصورة لتأخذ النصف العلوي فقط بنعومة */
 .profile-img-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 9 / 16;
+    max-height: 48vh;
     background-color: #000000;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .profile-img {
     width: 100%;
     height: 100%;
+    max-height: 48vh;
     object-fit: cover;
     object-position: top center;
     display: block;
     cursor: pointer;
-    transition: opacity 0.3s ease;
 }
 
+/* الفيديو كطبقة تغطي الشاشة كاملة بنسبة 9:16 أثناء التشغيل فقط */
 #profile-video {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
-    object-position: top center;
-    z-index: 2;
+    z-index: 9999;
+    background-color: #000000;
 }
 
 .fade-overlay {
@@ -65,56 +68,47 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 120px;
+    height: 90px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%);
-    z-index: 1;
     pointer-events: none;
-    transition: opacity 0.4s ease;
 }
 
-/* حاوية المحتوى الداخلي مع تأثير الانزلاق لأسفل */
+/* المحتوى السفلي ملموم ومرتب داخل الشاشة */
 .card-content {
-    padding: 20px 30px 40px 30px;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* حالة الاختفاء بالانسحاب لأسفل */
-.card-content.slide-down {
-    transform: translateY(100px);
-    opacity: 0;
-    pointer-events: none;
+    padding: 10px 25px 25px 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* الاسم */
 .name {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.1rem;          
+    font-size: 1.8rem;          
     font-weight: 800;
     color: #ffffff;             
-    margin-bottom: 8px;
-    letter-spacing: -0.8px;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
     text-transform: none;       
     white-space: nowrap;
 }
 
-/* المسمى الوظيفي التفاعلي بدون أسهم */
+/* اللقب الوظيفي بدون أسهم */
 .title-container {
     cursor: pointer;
-    margin-bottom: 30px;
-    display: inline-block;
+    margin-bottom: 20px;
     user-select: none;
 }
 
 .title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.05rem;          
+    font-size: 0.95rem;          
     font-weight: 500;
     color: #cccccc;
     letter-spacing: 0.2px;      
     text-transform: none;       
-    margin-bottom: 0;
     transition: color 0.2s ease;
 }
 
@@ -132,11 +126,11 @@ body {
 .title-details.show {
     max-height: 50px;
     opacity: 1;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .title-details p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #008cd2;
     font-weight: 500;
 }
@@ -154,23 +148,23 @@ body {
     background-color: #f0f0f0;
     color: #000000;
     font-family: 'Montserrat', sans-serif;
-    padding: 15px 20px;
+    padding: 13px 20px;
     border-radius: 30px;
     font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 35px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
     transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
-    background-color: #ffffff;
+.cta-button:active {
+    transform: scale(0.98);
 }
 
 /* الأيقونات */
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 22px;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -179,20 +173,16 @@ body {
 }
 
 .social-icons.show {
-    max-height: 60px;
+    max-height: 50px;
     opacity: 1;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
 .social-icons a {
     color: #ffffff;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-icons a:hover {
-    transform: translateY(-3px);
 }
 
 .social-icons .whatsapp:hover { color: #25D366; }
@@ -200,34 +190,13 @@ body {
 .social-icons .email:hover { color: #ea4335; }
 .social-icons .instagram:hover { color: #e1306c; }
 
-/* السطر الأخير */
+/* الحقوق بالأسفل */
 .tagline {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 400;
     color: #555555;
-    margin-top: 30px;
     letter-spacing: 1px;
     text-transform: uppercase;
     text-align: center;
-}
-
-/* ضبط التنسيق لشاشات الموبايل */
-@media (max-width: 480px) {
-    body {
-        background-color: #000000;
-        padding: 0;
-    }
-
-    .card-container {
-        max-width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-        background-color: #000000;
-    }
-    
-    .card-content {
-        padding: 20px 20px 40px 20px;
-    }
 }
