@@ -14,7 +14,7 @@ body {
     padding: 0;
 }
 
-/* الكارت محكوم بارتفاع شاشة الموبايل */
+/* الكارت ملموم وأنيق على مقاس الشاشة */
 .card-container {
     background-color: #000000;
     width: 100%;
@@ -29,37 +29,31 @@ body {
     position: relative;
 }
 
-/* ضبط حجم الصورة لتأخذ النصف العلوي فقط بنعومة */
+/* حاوية الصورة والفيديو (مقاس متناسق ومريح للعين) */
 .profile-img-container {
     position: relative;
     width: 100%;
-    max-height: 48vh;
+    height: 52vh; /* مقاس متوسط يحافظ على وضوح الوجه وبقاء الأزرار تحت */
     background-color: #000000;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
+}
+
+/* الصورة والفيديو واخدين نفس الأبعاد والمكان بالملّي */
+.profile-img,
+#profile-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; /* تثبيت الرأس والكتفين بنفس الإحداثيات */
+    display: block;
 }
 
 .profile-img {
-    width: 100%;
-    height: 100%;
-    max-height: 48vh;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
     cursor: pointer;
 }
 
-/* الفيديو كطبقة تغطي الشاشة كاملة بنسبة 9:16 أثناء التشغيل فقط */
 #profile-video {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 9999;
     background-color: #000000;
 }
 
@@ -68,12 +62,13 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 90px;
+    height: 80px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%);
     pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
-/* المحتوى السفلي ملموم ومرتب داخل الشاشة */
+/* المحتوى الداخلي مع تأثير الانزلاق لأسفل */
 .card-content {
     padding: 10px 25px 25px 25px;
     flex: 1;
@@ -81,6 +76,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* تأثير اختفاء النصوص والأزرار بالانسحاب لأسفل عند تشغيل الفيديو */
+.card-content.slide-down {
+    transform: translateY(120px);
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* الاسم */
@@ -185,12 +190,16 @@ body {
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
+.social-icons a:hover {
+    transform: translateY(-3px);
+}
+
 .social-icons .whatsapp:hover { color: #25D366; }
 .social-icons .phone:hover { color: #34b7f1; }
 .social-icons .email:hover { color: #ea4335; }
 .social-icons .instagram:hover { color: #e1306c; }
 
-/* الحقوق بالأسفل */
+/* الحقوق */
 .tagline {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.6rem;
