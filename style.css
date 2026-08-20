@@ -102,17 +102,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-}
-
-.toggle-arrow {
-    font-size: 0.75rem;
-    color: #888888;
-    transition: transform 0.3s ease;
-}
-
-.toggle-arrow.rotate {
-    transform: rotate(180deg);
 }
 
 .title-details {
