@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mahmoud Mahran</title>
     
-    <!-- كود أيقونة حرف M الرصاصي الشفاف للتاب -->
+    <!-- أيقونة التاب -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4,26 L4,6 L10,6 L16,16 L22,6 L28,6 L28,26 L23,26 L23,12 L17.5,21 L14.5,21 L9,12 L9,26 Z' fill='%23888888'/%3E%3C/svg%3E">
 
-    <!-- ربط مكتبة FontAwesome الرسمية -->
+    <!-- خطوط وأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- استدعاء خط Montserrat بالشكل الصحيح -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
@@ -34,9 +32,9 @@
             
             <h1 class="name">Mahmoud Mahran</h1>
             
-            <!-- المسمى الوظيفي التفاعلي -->
+            <!-- المسمى الوظيفي بدون أسهم -->
             <div class="title-container" id="title-container">
-                <h2 class="title">IT-System-Elektroniker <i class="fa-solid fa-chevron-down toggle-arrow"></i></h2>
+                <h2 class="title">IT-System-Elektroniker</h2>
                 <div class="title-details" id="title-details">
                     <p>Auszubildender bei der <strong>PKE Deutschland GmbH</strong></p>
                 </div>
@@ -60,7 +58,7 @@
     </div>
 
 <script>
-    // التحكم في زر Contact Me وإظهار الأيقونات مع السكرول
+    // زر Contact Me مع التمرير التلقائي
     const contactBtn = document.getElementById('contact-btn');
     const socialIcons = document.getElementById('social-icons');
 
@@ -75,22 +73,20 @@
         }
     });
 
-    // التحكم في إظهار تفاصيل اللقب الوظيفي (PKE)
+    // إظهار/إخفاء تفاصيل الوظيفة بالنقر على اللقب
     const titleContainer = document.getElementById('title-container');
     const titleDetails = document.getElementById('title-details');
-    const toggleArrow = document.querySelector('.toggle-arrow');
 
     titleContainer.addEventListener('click', (e) => {
         e.stopPropagation();
         titleDetails.classList.toggle('show');
-        toggleArrow.classList.toggle('rotate');
     });
 
     document.addEventListener('click', () => {
         socialIcons.classList.remove('show');
     });
 
-    // ميزة الـ Easter Egg (تشغيل الفيديو عند الضغط 5 مرات على الصورة)
+    // ميزة الـ Easter Egg (الضغط 5 مرات على الصورة)
     const profileImg = document.getElementById('profile-img');
     const profileVideo = document.getElementById('profile-video');
     const cardContent = document.getElementById('card-content');
@@ -110,12 +106,11 @@
         if (tapCount === 5) {
             tapCount = 0;
             
-            // إخفاء كل العناصر والتدرج
-            if (cardContent) cardContent.classList.add('hidden-ui');
-            if (fadeOverlay) fadeOverlay.style.display = 'none';
+            // سحب النصوص لأسفل وإخفاء التدرج
+            if (cardContent) cardContent.classList.add('slide-down');
+            if (fadeOverlay) fadeOverlay.style.opacity = '0';
 
-            // تبديل الصورة بالفيديو وتشغيله
-            profileImg.style.display = 'none';
+            // تشغيل الفيديو
             profileVideo.style.display = 'block';
             profileVideo.currentTime = 0;
             profileVideo.play();
@@ -125,9 +120,8 @@
     // إعادة الوضع الطبيعي بعد انتهاء الفيديو
     profileVideo.addEventListener('ended', () => {
         profileVideo.style.display = 'none';
-        profileImg.style.display = 'block';
-        if (cardContent) cardContent.classList.remove('hidden-ui');
-        if (fadeOverlay) fadeOverlay.style.display = 'block';
+        if (cardContent) cardContent.classList.remove('slide-down');
+        if (fadeOverlay) fadeOverlay.style.opacity = '1';
     });
 </script>
 </body>
