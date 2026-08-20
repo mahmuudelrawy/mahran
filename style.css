@@ -42,7 +42,7 @@ body {
     cursor: pointer;
 }
 
-/* تجهيز الفيديو ليكون بنفس أبعاد ومكان الصورة تماماً */
+/* الفيديو مخفي وبنفس أبعاد ومكان الصورة */
 #profile-video {
     display: none;
     width: 100%;
@@ -65,7 +65,7 @@ body {
     transition: opacity 0.4s ease-in-out;
 }
 
-/* كلاس إخفاء واجهة البيانات أثناء تشغيل الفيديو */
+/* إخفاء الواجهة أثناء تشغيل الفيديو */
 .hidden-ui {
     opacity: 0 !important;
     pointer-events: none;
@@ -83,7 +83,14 @@ body {
     white-space: nowrap;
 }
 
-/* اللقب الوظيفي */
+/* تنسيق المسمى الوظيفي والقائمة المنسدلة */
+.title-container {
+    cursor: pointer;
+    margin-bottom: 30px;
+    display: inline-block;
+    user-select: none;
+}
+
 .title {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.05rem;          
@@ -91,10 +98,47 @@ body {
     color: #cccccc;
     letter-spacing: 0.2px;      
     text-transform: none;       
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-/* تنسيق الزرار */
+.toggle-arrow {
+    font-size: 0.75rem;
+    color: #888888;
+    transition: transform 0.3s ease;
+}
+
+.toggle-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+.title-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+}
+
+.title-details.show {
+    max-height: 50px;
+    opacity: 1;
+    margin-top: 10px;
+}
+
+.title-details p {
+    font-size: 0.85rem;
+    color: #008cd2;
+    font-weight: 500;
+}
+
+.title-details strong {
+    color: #ffffff;
+}
+
+/* زر الاتصال */
 .cta-button {
     display: block;
     width: 100%;
@@ -115,7 +159,7 @@ body {
     background-color: #ffffff;
 }
 
-/* جعل الأيقونات مخفية بشكل افتراضي */
+/* الأيقونات */
 .social-icons {
     display: flex;
     justify-content: center;
