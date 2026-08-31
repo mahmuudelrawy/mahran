@@ -20,6 +20,11 @@
 </head>
 <body>
 
+    <!-- شاشة الفيديو الافتتاحي عند تشغيل الرابط -->
+    <div id="intro-overlay" class="intro-overlay">
+        <video id="intro2-video" src="intro2.mp4" playsinline autoplay muted preload="auto"></video>
+    </div>
+
     <div class="card-container">
         
         <!-- حاوية الصورة والفيديو -->
@@ -45,12 +50,13 @@
             <!-- زر الاتصال -->
             <button id="contact-btn" class="cta-button">Contact Me</button>
 
-            <!-- قسم الأيقونات -->
+            <!-- قسم الأيقونات مع إضافة تيك توك -->
             <div class="social-icons" id="social-icons">
                 <a href="https://wa.me/4915222852550" target="_blank" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="tel:+4915222852550" class="phone"><i class="fa-solid fa-phone"></i></a>
                 <a href="mailto:mahmuud.mahran@gmail.com" class="email"><i class="fa-solid fa-envelope"></i></a>
                 <a href="https://instagram.com/mahmoudelrawy" target="_blank" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com/@mahmuudelrawy" target="_blank" class="tiktok"><i class="fa-brands fa-tiktok"></i></a>
             </div>
             
             <p class="tagline">© 2026 Mahmoud Mahran. All Rights Reserved.</p>
@@ -60,6 +66,23 @@
     </div>
 
 <script>
+    // تشغيل وإخفاء الفيديو الافتتاحي intro2
+    const introOverlay = document.getElementById('intro-overlay');
+    const intro2Video = document.getElementById('intro2-video');
+
+    function hideIntro() {
+        introOverlay.classList.add('hide');
+        setTimeout(() => {
+            introOverlay.style.display = 'none';
+        }, 600);
+    }
+
+    if (intro2Video) {
+        intro2Video.addEventListener('ended', hideIntro);
+        // في حال تعذر التشغيل التلقائي بسبب قيود بعض المتصفحات يتم الدخول فوراً
+        intro2Video.play().catch(() => hideIntro());
+    }
+
     // التحكم في زر Contact Me وإظهار الأيقونات مع السكرول
     const contactBtn = document.getElementById('contact-btn');
     const socialIcons = document.getElementById('social-icons');
