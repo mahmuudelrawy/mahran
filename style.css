@@ -14,6 +14,32 @@ body {
     padding: 20px;
 }
 
+/* طبقة الفيديو الافتتاحي التلقائي */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease;
+}
+
+.intro-overlay video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.intro-overlay.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* الكارت الرئيسي */
 .card-container {
     background-color: #000000;
@@ -152,7 +178,7 @@ body {
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -181,6 +207,7 @@ body {
 .social-icons .phone:hover { color: #34b7f1; }
 .social-icons .email:hover { color: #ea4335; }
 .social-icons .instagram:hover { color: #e1306c; }
+.social-icons .tiktok:hover { color: #00f2fe; }
 
 /* السطر الأخير */
 .tagline {
