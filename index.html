@@ -30,7 +30,6 @@
         <!-- حاوية الصورة والفيديو -->
         <div class="profile-img-container">
             <img src="profile.jpeg" alt="محمود مهران" class="profile-img" id="profile-img">
-            <video id="profile-video" src="intro.mp4" playsinline preload="auto"></video>
             <div class="fade-overlay" id="fade-overlay"></div>
         </div>
 
@@ -54,9 +53,7 @@
             <div class="social-icons" id="social-icons">
                 <a href="https://wa.me/4915222852550" target="_blank" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="tel:+4915222852550" class="phone"><i class="fa-solid fa-phone"></i></a>
-                <a href="mailto:mahmuud.mahran@gmail.com" class="email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://instagram.com/mahmoudelrawy" target="_blank" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://tiktok.com/@mahmuudelrawy" target="_blank" class="tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="mailto:m.mahran@pke-de.com" class="email"><i class="fa-solid fa-envelope"></i></a>
             </div>
             
             <p class="tagline">© 2026 Mahmoud Mahran. All Rights Reserved.</p>
@@ -111,45 +108,5 @@
         socialIcons.classList.remove('show');
     });
 
-    // ميزة الـ Easter Egg (تشغيل الفيديو عند الضغط 5 مرات على الصورة)
-    const profileImg = document.getElementById('profile-img');
-    const profileVideo = document.getElementById('profile-video');
-    const cardContent = document.getElementById('card-content');
-    const fadeOverlay = document.getElementById('fade-overlay');
 
-    let tapCount = 0;
-    let tapTimer = null;
-
-    profileImg.addEventListener('click', () => {
-        tapCount++;
-        
-        clearTimeout(tapTimer);
-        tapTimer = setTimeout(() => {
-            tapCount = 0;
-        }, 1000);
-
-        if (tapCount === 5) {
-            tapCount = 0;
-            
-            // إخفاء كل العناصر والتدرج
-            if (cardContent) cardContent.classList.add('hidden-ui');
-            if (fadeOverlay) fadeOverlay.style.display = 'none';
-
-            // تبديل الصورة بالفيديو وتشغيله
-            profileImg.style.display = 'none';
-            profileVideo.style.display = 'block';
-            profileVideo.currentTime = 0;
-            profileVideo.play();
-        }
-    });
-
-    // إعادة الوضع الطبيعي بعد انتهاء الفيديو
-    profileVideo.addEventListener('ended', () => {
-        profileVideo.style.display = 'none';
-        profileImg.style.display = 'block';
-        if (cardContent) cardContent.classList.remove('hidden-ui');
-        if (fadeOverlay) fadeOverlay.style.display = 'block';
-    });
-</script>
-</body>
-</html>
+           
